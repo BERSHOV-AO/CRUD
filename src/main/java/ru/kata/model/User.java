@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -26,7 +27,6 @@ public class User {
     @Size(min = 2, max = 40, message = "Country should be in range between 2 and 40 characters")
     @Column(name = "country")
     private String country;
-
 
     public User(String name, String lastname, String country) {
         this.name = name;
@@ -67,5 +67,21 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id
+                && Objects.equals(name, user.name)
+                && Objects.equals(lastname, user.lastname)
+                && Objects.equals(country, user.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastname, country);
     }
 }
