@@ -24,14 +24,15 @@ public class User {
     @Column(name = "lastname")
     private String lastname;
 
-    @Size(min = 2, max = 40, message = "Country should be in range between 2 and 40 characters")
-    @Column(name = "country")
-    private String country;
+    @NotEmpty(message = "Lastname field is Empty")
+    @Size(min = 5, max = 40, message = "Country should be in range between 2 and 40 characters")
+    @Column(name = "email")
+    private String email;
 
-    public User(String name, String lastname, String country) {
+    public User(String name, String lastname, String email) {
         this.name = name;
         this.lastname = lastname;
-        this.country = country;
+        this.email = email;
     }
 
     public User() {
@@ -61,12 +62,12 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getCountry() {
-        return country;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -74,14 +75,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id
-                && Objects.equals(name, user.name)
-                && Objects.equals(lastname, user.lastname)
-                && Objects.equals(country, user.country);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(lastname, user.lastname) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastname, country);
+        return Objects.hash(id, name, lastname, email);
     }
 }

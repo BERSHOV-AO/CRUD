@@ -19,7 +19,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-                SpringConfig.class
+                WebConfig.class
         };
     }
 
@@ -29,14 +29,15 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         RegisterHiddenField(aServletContext);
     }
 
+    private void RegisterHiddenField(ServletContext context) {
+        context.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
+    }
+
+
     /* Данный метод указывает url, на котором будет базироваться приложение */
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
-    private void RegisterHiddenField(ServletContext context) {
-        context.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
-    }
 }
