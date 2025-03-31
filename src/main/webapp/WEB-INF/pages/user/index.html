@@ -5,89 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: white;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        input[type="submit"] {
-            background-color: #f44336; /* Красный */
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #d32f2f; /* Темно-красный */
-        }
-
-        h3 a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        h3 a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
-
 <body>
 <table border="3">
     <tr>
         <th>Id</th>
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Почта</th>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Email</th>
         <th>Update</th>
-        <th>Delete</th>
     </tr>
     <tr th:each="u : ${users}">
-        <td th:text="${u.getId()}">...</td>
-        <td th:text="${u.getName()}">...</td>
-        <td th:text="${u.getLastname()}">...</td>
-        <td th:text="${u.getEmail()}">...</td>
-        <td><a th:href="@{/{id}/edit(id=${u.getId()})}">Update</a></td>
-        <td>
-            <form th:method="DELETE" th:action="@{/{id}(id=${u.getId()})}">
-                <input type="submit" value="Delete"/>
-            </form>
-        </td>
+        <td th:utext="${u.getId()}">...</td>
+        <td th:utext="${u.getName()}">...</td>
+        <td th:utext="${u.getLastname()}">...</td>
+        <td th:utext="${u.getEmail()}">...</td>
+        <td><a th:href="@{/{id}/edit(id=${u.getId()})}" th:utext="Update"></a></td>
+        <td><form th:method="DELETE" th:action="@{/{id}(id=${u.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form></td>
     </tr>
 </table>
 
@@ -95,3 +31,104 @@
 
 </body>
 </html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Users</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f4;-->
+<!--            margin: 20px;-->
+<!--        }-->
+
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-bottom: 20px;-->
+<!--            background-color: white;-->
+<!--        }-->
+
+<!--        th, td {-->
+<!--            padding: 12px;-->
+<!--            text-align: left;-->
+<!--            border: 1px solid #ddd;-->
+<!--        }-->
+
+<!--        th {-->
+<!--            background-color: #4CAF50;-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        tr:hover {-->
+<!--            background-color: #f1f1f1;-->
+<!--        }-->
+
+<!--        a {-->
+<!--            color: #007BFF;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+
+<!--        input[type="submit"] {-->
+<!--            background-color: #f44336; /* Красный */-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            padding: 8px 16px;-->
+<!--            cursor: pointer;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+
+<!--        input[type="submit"]:hover {-->
+<!--            background-color: #d32f2f; /* Темно-красный */-->
+<!--        }-->
+
+<!--        h3 a {-->
+<!--            color: #4CAF50;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        h3 a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<table border="3">-->
+<!--    <tr>-->
+<!--        <th>Id</th>-->
+<!--        <th>Имя</th>-->
+<!--        <th>Фамилия</th>-->
+<!--        <th>Почта</th>-->
+<!--        <th>Update</th>-->
+<!--        <th>Delete</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="u : ${users}">-->
+<!--        <td th:text="${u.getId()}">...</td>-->
+<!--        <td th:text="${u.getName()}">...</td>-->
+<!--        <td th:text="${u.getLastname()}">...</td>-->
+<!--        <td th:text="${u.getEmail()}">...</td>-->
+<!--        <td><a th:href="@{/{id}/edit(id=${u.getId()})}">Update</a></td>-->
+<!--        <td>-->
+<!--            <form th:method="DELETE" th:action="@{/{id}(id=${u.getId()})}">-->
+<!--                <input type="submit" value="Delete"/>-->
+<!--            </form>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<!--<h3><a th:href="@{/new}">Create User</a></h3>-->
+
+<!--</body>-->
+<!--</html>-->
