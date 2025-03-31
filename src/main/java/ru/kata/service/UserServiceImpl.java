@@ -6,16 +6,15 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.kata.dao.UserDao;
 import ru.kata.model.User;
 
-import java.beans.Transient;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
     @Autowired
-    public UserServiceImpl (UserDao userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -53,5 +52,4 @@ public class UserServiceImpl implements UserService{
         userDao.update(id, user);
 
     }
-
 }

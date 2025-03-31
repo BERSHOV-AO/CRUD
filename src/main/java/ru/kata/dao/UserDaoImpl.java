@@ -9,9 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -19,7 +18,6 @@ public class UserDaoImpl implements UserDao{
     public UserDaoImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
 
     @Override
     public void add(User user) {
@@ -55,7 +53,6 @@ public class UserDaoImpl implements UserDao{
         user.setLastname(update.getLastname());
         user.setEmail(update.getEmail());
         entityManager.merge(user);
-
     }
 }
 

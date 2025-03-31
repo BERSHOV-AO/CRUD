@@ -25,7 +25,7 @@ public class User {
     @Column(name = "lastname")
     private String lastname;
 
-    @NotEmpty(message = "Lastname field is Empty")
+    @NotEmpty(message = "Email field is Empty")
     @Size(min = 6, max = 40, message = "Email should be in range between 2 and 40 characters")
     @Column(name = "email")
     private String email;
