@@ -1,5 +1,6 @@
 package ru.kata.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.kata.model.User;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserDao{
 
     @PersistenceContext
     private final EntityManager entityManager;
@@ -19,6 +20,7 @@ public class UserDaoImpl implements UserDao {
         this.entityManager = entityManager;
     }
 
+
     @Override
     public void add(User user) {
         entityManager.persist(user);
@@ -26,30 +28,34 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
+    public List<User> users() {
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
+    }
+
+
+    @Override
     public User showUser(int id) {
         TypedQuery<User> query = entityManager.createQuery(
-                "select u from User u where u.id =:id", User.class);
+                "select u from User u where u.id = :id", User.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
 
     @Override
-    public List<User> users() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
-    }
-
-    @Override
-    public void deleteUser(int id) {
+    public void remove(int id) {
         User user = showUser(id);
         entityManager.remove(user);
     }
 
+
     @Override
-    public void updateUser(int id, User update) {
+    public void update(int id, User update) {
         User user = showUser(id);
         user.setName(update.getName());
         user.setLastname(update.getLastname());
         user.setEmail(update.getEmail());
         entityManager.merge(user);
+
     }
 }
+

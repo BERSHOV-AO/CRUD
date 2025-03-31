@@ -7,27 +7,31 @@ import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "name field is Empty")
+    @NotEmpty(message = "Name field is Empty")
     @Size(min = 2, max = 50, message = "Name should be in range between 2 and 50 characters")
     @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "lastname field is Empty")
-    @Size(min = 2, max = 50, message = "Name should be in range between 2 and 50 characters")
+
+    @NotEmpty(message = "Lastname field is Empty")
+    @Size(min = 2, max = 50, message = "Lastname should be in range between 2 and 50 characters")
     @Column(name = "lastname")
     private String lastname;
 
     @NotEmpty(message = "Lastname field is Empty")
-    @Size(min = 5, max = 40, message = "Country should be in range between 2 and 40 characters")
+    @Size(min = 6, max = 40, message = "Email should be in range between 2 and 40 characters")
     @Column(name = "email")
     private String email;
+
+    public User() {
+    }
 
     public User(String name, String lastname, String email) {
         this.name = name;
@@ -35,16 +39,6 @@ public class User {
         this.email = email;
     }
 
-    public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -60,6 +54,14 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

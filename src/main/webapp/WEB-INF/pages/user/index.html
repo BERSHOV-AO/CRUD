@@ -12,14 +12,14 @@
         <th>Id</th>
         <th>Name</th>
         <th>LastName</th>
-        <th>Country</th>
+        <th>Email</th>
         <th>Update</th>
     </tr>
     <tr th:each="u : ${users}">
         <td th:utext="${u.getId()}">...</td>
         <td th:utext="${u.getName()}">...</td>
         <td th:utext="${u.getLastname()}">...</td>
-        <td th:utext="${u.getCountry()}">...</td>
+        <td th:utext="${u.getEmail()}">...</td>
         <td><a th:href="@{/{id}/edit(id=${u.getId()})}" th:utext="Update"></a></td>
         <td><form th:method="DELETE" th:action="@{/{id}(id=${u.getId()})}">
             <input type="submit" value="Delete"/>

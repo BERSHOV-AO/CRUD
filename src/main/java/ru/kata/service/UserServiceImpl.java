@@ -10,42 +10,48 @@ import java.beans.Transient;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     private UserDao userDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl (UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Transactional
     @Override
     public void add(User user) {
+        userDao.add(user);
 
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<User> users() {
-        return null;
+        return userDao.users();
     }
+
 
     @Transactional(readOnly = true)
     @Override
-    public User getUserById(int id) {
-        return null;
+    public User showUser(int id) {
+        return userDao.showUser(id);
     }
+
 
     @Transactional
     @Override
-    public void deleteUserById(int id) {
-
+    public void remove(int id) {
+        userDao.remove(id);
     }
+
 
     @Transactional
     @Override
-    public void updateUser(int id, User user) {
+    public void update(int id, User user) {
+        userDao.update(id, user);
 
     }
+
 }
